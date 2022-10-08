@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1026776437337",
+    "project_id": "animate-2e059",
+    "storage_bucket": "animate-2e059.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026776437337:android:a31fce06e306f181805748",
+        "android_client_info": {
+          "package_name": "com.example.animate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026776437337-furs7br300a6pqqnoqk5qrh16j7dp7lq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1PnYqh6t2vFwEB5D9UO4VLPJ3MaS_CwI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026776437337-furs7br300a6pqqnoqk5qrh16j7dp7lq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,50 +1,27 @@
-import 'package:animate/animator.dart';
+import 'package:dashbook/dashbook.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'metaballs/meta_balls.dart';
+import 'v2.dart';
 
 void main() {
-  runApp(const ProviderScope(child: MyApp()));
-}
+  final dashbook = Dashbook();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  // Adds the Text widget stories
+  dashbook.storiesOf('Animations').add('Rotate', (_) {
+    return const AnimationV2Widget();
+  }).add(
+    'Meta balls',
+    (dashContext) {
+      return MetaBallsWidget(ballCount: dashContext.numberProperty('ball count', 8));
+    },
+    info:
+        'Meta balls are implemented with CustomPainter using shaders.\n\n'
+            'Each ball is drawn with a shader created from a RadialGradient, '
+            'using white color values from fully opaque to fully transparent, '
+            'on a specific curve.\n\n'
+            'Shaders are added on top of each other using Blendmode.plus',
+  );
 
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Animation Showcase',
-      theme: ThemeData(
-        primarySwatch: Colors.orange,
-      ),
-      home: const Scaffold(body: Center(child: HomeWidget())),
-    );
-  }
-}
-
-class HomeWidget extends ConsumerWidget {
-  const HomeWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final animationStep = ref.watch(animationProvider);
-    if (animationStep.value == null) {
-      return const SizedBox.shrink();
-    } else {
-      final step = animationStep.value!;
-      return TextButton(
-        onPressed: () {
-          ref.read(reset.notifier).state = DateTime.now().millisecondsSinceEpoch;
-        },
-        child: Container(
-          decoration: BoxDecoration(
-              color: step.color ?? Colors.red, borderRadius: step.borderRadius ?? BorderRadius.circular(30)),
-          width: step.width ?? 120,
-          height: step.height ?? 120,
-          transform: step.transform ?? Matrix4.identity(),
-          transformAlignment: Alignment.center,
-        ),
-      );
-    }
-  }
+  runApp(dashbook);
 }

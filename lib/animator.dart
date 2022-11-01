@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AnimationProps {
   final Color? color;
@@ -15,16 +14,12 @@ class AnimationProps {
   const AnimationProps({this.color, this.borderRadius, this.width, this.height, this.transform});
 }
 
-final reset = StateProvider<int>((ref) => 0);
-
-final animationProvider = StreamProvider((ref) async* {
-  ref.watch(reset);
+Stream<AnimationProps> animStream() async* {
   double velocity = 0.0;
   double angle = 0.0;
   const animSteps = 300;
   int opacity = 0;
   double size = 0;
-  const delay = Duration(milliseconds: 16);
   for (int i = 0; i < animSteps; i++) {
     if (i < animSteps / 2) {
       opacity = (i * 255 / (animSteps / 2)).floor();
@@ -47,10 +42,9 @@ final animationProvider = StreamProvider((ref) async* {
       velocity -= 0.003;
     }
     angle += velocity;
-    await Future.delayed(delay);
   }
 
   yield AnimationProps(
     transform: Matrix4.rotationZ(0),
   );
-});
+}

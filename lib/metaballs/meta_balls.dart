@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:animate/metaballs/ticker_notifier.dart';
+import 'package:animate/shared/ticker_notifier.dart';
 import 'package:flutter/material.dart';
 
 import 'meta_ball.dart';

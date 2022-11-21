@@ -53,17 +53,19 @@ class _AnimationV2WidgetState extends State<AnimationV2Widget> {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        _restart();
-      },
-      child: Container(
-        decoration: BoxDecoration(
-            color: step.color ?? Colors.red, borderRadius: step.borderRadius ?? BorderRadius.circular(30)),
-        width: step.width ?? 120,
-        height: step.height ?? 120,
-        transform: step.transform ?? Matrix4.identity(),
-        transformAlignment: Alignment.center,
+    return Center(
+      child: TextButton(
+        onPressed: () {
+          _restart();
+        },
+        child: Container(
+          decoration: BoxDecoration(
+              color: step.color ?? Colors.red, borderRadius: step.borderRadius ?? BorderRadius.circular(30)),
+          width: step.width ?? 120,
+          height: step.height ?? 120,
+          transform: step.transform ?? Matrix4.identity(),
+          transformAlignment: Alignment.center,
+        ),
       ),
     );
   }

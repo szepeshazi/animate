@@ -39,6 +39,8 @@ class _FPSWidgetState extends State<FPSWidget> {
   double width = 150;
   double height = 100;
   late int framesToDisplay = width ~/ 5;
+  int frameCounter = 0;
+  double avgFPS = 0;
 
   @override
   void initState() {
@@ -56,6 +58,7 @@ class _FPSWidgetState extends State<FPSWidget> {
           }
         }
         prev = duration;
+        frameCounter = (++frameCounter) % framesToDisplay;
       });
 
       if (widget.show) {
@@ -80,9 +83,11 @@ class _FPSWidgetState extends State<FPSWidget> {
   @override
   Widget build(BuildContext context) {
     final current = timings.isNotEmpty ? timings.last.fps.toStringAsFixed(0) : '';
-    final avg = timings.isNotEmpty
-        ? (timings.map((e) => e.fps).reduce((value, element) => value + element) / timings.length).toStringAsFixed(0)
-        : '';
+    if (frameCounter == 0) {
+      avgFPS = timings.isNotEmpty
+          ? (timings.map((e) => e.fps).reduce((value, element) => value + element) / timings.length)
+          : 0;
+    }
     return Stack(
       alignment: widget.alignment,
       children: [
@@ -95,17 +100,22 @@ class _FPSWidgetState extends State<FPSWidget> {
               width: width + 17,
               padding: const EdgeInsets.all(6.0),
               decoration: BoxDecoration(
-                color: const Color(0xaa000000),
+                color: const Color(0x80000000),
                 borderRadius: BorderRadius.circular(4.0),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  if (timings.isNotEmpty)
+                  if (timings.isNotEmpty) ...[
                     Text(
-                      'FPS: $current (avg: $avg)',
+                      'FPS current: $current',
                       style: const TextStyle(color: Color(0xffffffff)),
                     ),
+                    Text(
+                      'FPS avg: ${avgFPS.toStringAsFixed(0)}',
+                      style: const TextStyle(color: Color(0xffffffff)),
+                    ),
+                  ],
                   const SizedBox(height: 4),
                   Expanded(
                     child: SizedBox(
@@ -122,8 +132,8 @@ class _FPSWidgetState extends State<FPSWidget> {
                               ),
                               child: Container(
                                 color: Color.lerp(
-                                  const Color(0xfff44336),
-                                  const Color(0xff4caf50),
+                                  const Color(0xbbf44336),
+                                  const Color(0xbb4caf50),
                                   p,
                                 ),
                                 width: 4,

@@ -25,13 +25,15 @@ Future<void> main() async {
 
   // Adds the Text widget stories
   dashbook.storiesOf('Animations').add('Rotate', (_) {
-    return const FPSWidget(alignment: Alignment.bottomRight, child: AnimationV2Widget());
+    return const FPSWidget(
+        alignment: Alignment.bottomRight, child: AnimationV2Widget());
   }).add(
     'Meta balls',
     (dashContext) {
       return FPSWidget(
           alignment: Alignment.bottomRight,
-          child: MetaBallsWidget(ballCount: dashContext.numberProperty('ball count', 8)));
+          child: MetaBallsWidget(
+              ballCount: dashContext.numberProperty('ball count', 8)));
     },
     info: 'Meta balls are implemented with CustomPainter using shaders.\n\n'
         'Each ball is drawn with a shader created from a RadialGradient, '
@@ -40,7 +42,8 @@ Future<void> main() async {
         'Shaders are added on top of each other using Blendmode.plus',
   ).add('Bouncing ball', (_) {
     //return BouncingBallWidget();
-    return const FPSWidget(alignment: Alignment.bottomRight, child: BouncingBallWidget());
+    return const FPSWidget(
+        alignment: Alignment.bottomRight, child: BouncingBallWidget());
   });
 
   runApp(dashbook);

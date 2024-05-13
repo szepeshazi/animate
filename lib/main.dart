@@ -1,10 +1,11 @@
+import 'package:animate/bell/bell_animation.dart';
+import 'package:animate/bouncing_ball/bouncing_ball.dart';
+import 'package:animate/metaballs/meta_balls.dart';
 import 'package:animate/shared/fps_widget.dart';
+import 'package:animate/staggered/staggered_animation.dart';
+import 'package:animate/v2.dart';
 import 'package:dashbook/dashbook.dart';
 import 'package:flutter/material.dart';
-
-import 'bouncing_ball/bouncing_ball.dart';
-import 'metaballs/meta_balls.dart';
-import 'v2.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,10 +25,19 @@ Future<void> main() async {
   final dashbook = Dashbook();
 
   // Adds the Text widget stories
-  dashbook.storiesOf('Animations').add('Rotate', (_) {
-    return const FPSWidget(
-        alignment: Alignment.bottomRight, child: AnimationV2Widget());
-  }).add(
+  dashbook
+      .storiesOf('Animations')
+      .add(
+        "Gemini",
+        (context) => const BellAnimation(),
+      )
+      .add(
+    'Rotate',
+    (_) {
+      return const FPSWidget(
+          alignment: Alignment.bottomRight, child: AnimationV2Widget());
+    },
+  ).add(
     'Meta balls',
     (dashContext) {
       return FPSWidget(
@@ -44,7 +54,13 @@ Future<void> main() async {
     //return BouncingBallWidget();
     return const FPSWidget(
         alignment: Alignment.bottomRight, child: BouncingBallWidget());
-  });
+  }).add(
+    'Staggered',
+    (context) => const FPSWidget(
+      alignment: Alignment.bottomRight,
+      child: StaggerDemo(),
+    ),
+  );
 
   runApp(dashbook);
 }

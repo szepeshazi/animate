@@ -47,7 +47,7 @@ class _AnimationV2WidgetState extends State<AnimationV2Widget> {
     sub = animStream().listen((step) {
       steps.add(step);
     });
-    await Future.delayed(Duration.zero);
+    await Future<void>.delayed(Duration.zero);
     _ticker.start();
   }
 
@@ -60,7 +60,8 @@ class _AnimationV2WidgetState extends State<AnimationV2Widget> {
         },
         child: Container(
           decoration: BoxDecoration(
-              color: step.color ?? Colors.red, borderRadius: step.borderRadius ?? BorderRadius.circular(30)),
+              color: step.color ?? Colors.red,
+              borderRadius: step.borderRadius ?? BorderRadius.circular(30)),
           width: step.width ?? 120,
           height: step.height ?? 120,
           transform: step.transform ?? Matrix4.identity(),

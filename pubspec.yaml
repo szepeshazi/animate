@@ -1,10 +1,10 @@
 name: animate
 description: Flutter animation showcase
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.0
+version: 1.0.1ß
 
 environment:
-  sdk: '>=2.18.2 <3.0.0'
+  sdk: '>=3.1.0'
 
 dependencies:
   flutter:
@@ -19,6 +19,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  shaders:
+    - assets/shaders/exp.frag
 
 flutter_icons:
   android: "animate_icon"

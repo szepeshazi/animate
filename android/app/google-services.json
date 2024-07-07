@@ -9,7 +9,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1026776437337:android:a31fce06e306f181805748",
         "android_client_info": {
-          "package_name": "com.example.animate"
+          "package_name": "org.notnoise.animate"
         }
       },
       "oauth_client": [

@@ -1,7 +1,7 @@
 name: animate
 description: Flutter animation showcase
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-version: 1.0.1ß
+version: 1.0.2+2024070902
 
 environment:
   sdk: '>=3.1.0'
